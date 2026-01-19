@@ -1,8 +1,21 @@
-let strip: neopixel.Strip = null
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     strip.showColor(neopixel.colors(NeoPixelColors.White))
     strip.show()
 })
+let strip: neopixel.Strip = null
+strip = neopixel.create(DigitalPin.P1, 30, NeoPixelMode.RGB_RGB)
+strip.show()
+if (input.soundLevel() >= 3) {
+    if (input.buttonIsPressed(Button.A)) {
+        basic.pause(2000)
+        if (input.buttonIsPressed(Button.B)) {
+            basic.pause(2000)
+            if (input.buttonIsPressed(Button.AB)) {
+                basic.pause(2000)
+            }
+        }
+    }
+}
 basic.forever(function () {
     strip.showColor(neopixel.colors(NeoPixelColors.White))
     strip.showRainbow(1, 5000)
